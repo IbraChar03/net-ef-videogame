@@ -33,7 +33,7 @@ namespace net_ef_videogame
                             string cittaSoftwarehouse = Console.ReadLine();
                             Console.Write("Inserisci il paese della software house : ");
                             string paeseSoftwarehouse = Console.ReadLine();
-                            vd.InserisciSoftwareHouse(db, nomeSoftwarehouse, cittaSoftwarehouse, paeseSoftwarehouse);
+                            vd.InserisciSoftwareHouse( nomeSoftwarehouse, cittaSoftwarehouse, paeseSoftwarehouse);
                         }
                         catch (Exception e)
                         {
@@ -53,7 +53,7 @@ namespace net_ef_videogame
                             Console.Write("Inserisci il nome della software house : ");
                             string nomesoftwarehouse = Console.ReadLine();
                             SoftwareHouse softwarehouse = db.SoftwareHouses.Where(s => s.Name == nomesoftwarehouse).First();
-                            vd.InserisciVideogame(db, name, overview, date,softwarehouse.SoftwareHouseId);
+                            vd.InserisciVideogame(name, overview, date,softwarehouse.SoftwareHouseId);
                         }
                         catch (Exception e)
                         {
@@ -67,7 +67,7 @@ namespace net_ef_videogame
                             Console.Write("Inserisci il nome del videogioco da rimuovere : ");
                             string nomeVideogiocoRim = Console.ReadLine();
                             Videogame videogame = db.Videogames.Where(v => v.Name == nomeVideogiocoRim).First();
-                            vd.RimuoviVideogame(db,videogame);
+                            vd.RimuoviVideogame(videogame);
                         }
                         catch (Exception e)
                         {
@@ -84,7 +84,7 @@ namespace net_ef_videogame
                             Console.Write("Inserisci un nuovo riassunto per il videogioco : ");
                             string overviewVd = Console.ReadLine();
                             videogame.Overview = overviewVd;
-                            vd.AggiornaVideogioco(db, videogame);
+                            vd.AggiornaVideogioco(videogame);
                         }
                         catch (Exception e)
                         {
