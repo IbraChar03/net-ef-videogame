@@ -26,11 +26,11 @@ namespace net_ef_videogame
                     case "Inserisci software house":
                         try
                         {
-                            Console.WriteLine("Inserisci il nome della software house : ");
+                            Console.Write("Inserisci il nome della software house : ");
                             string nomeSoftwarehouse = Console.ReadLine();
-                            Console.WriteLine("Inserisci la città della software house : ");
+                            Console.Write("Inserisci la città della software house : ");
                             string cittaSoftwarehouse = Console.ReadLine();
-                            Console.WriteLine("Inserisci il paese della software house : ");
+                            Console.Write("Inserisci il paese della software house : ");
                             string paeseSoftwarehouse = Console.ReadLine();
                             vd.InserisciSoftwareHouse(db, nomeSoftwarehouse, cittaSoftwarehouse, paeseSoftwarehouse);
                         }
@@ -91,37 +91,41 @@ namespace net_ef_videogame
                         }
 
                         break;
-                        //case "Cerca videogioco tramite id":
-                        //    try
-                        //    {
-                        //        Console.Write("Inserisci l`id del videogioco da cercare : ");
-                        //        long idVideogioco = Convert.ToInt64(Console.ReadLine());
-                        //        VideogameManager.GetVideogameById(idVideogioco);
+                    case "Cerca videogioco tramite id":
+                        try
+                        {
+                            Console.Write("Inserisci l`id del videogioco da cercare : ");
+                            int idVideogioco = Convert.ToInt32(Console.ReadLine());
+                            Videogame videogame = db.Videogames.Where(v => v.VideogameId == idVideogioco).First();
+                            SoftwareHouse softwarehouse = db.SoftwareHouses.Where(s => s.SoftwareHouseId == videogame.SoftwareHouseId).First();
+                            vd.StampaVideogame(videogame,softwarehouse);
 
-                        //    }
-                        //    catch (Exception e)
-                        //    {
-                        //        Console.WriteLine(e.Message);
-                        //    }
 
-                        //    break;
-                        //case "Cerca videogiochi":
-                        //    try
-                        //    {
-                        //        Console.Write("Inserisci la parola : ");
-                        //        string parola = Console.ReadLine();
-                        //        VideogameManager.CercaVideogiochi(parola);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
 
-                        //    }
-                        //    catch (Exception e)
-                        //    {
-                        //        Console.WriteLine(e.Message);
-                        //    }
+                        break;
+                    case "Cerca videogiochi":
+                        try
+                        {
+                            Console.Write("Inserisci la parola : ");
+                            string parola = Console.ReadLine();
+                            List<Videogame> listavideogames = db.Videogames.Where(v => v.Name.Contains(parola)).ToList();
+                            vd.StampaListaVideogames(listavideogames);
 
-                        //    break;
-                        //case "Esci":
-                        //    Console.Write("Arrivederci");
-                        //    break;
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+                        break;
+                    case "Esci":
+                        Console.Write("Arrivederci");
+                        break;
                 }
             }
         }

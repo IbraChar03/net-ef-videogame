@@ -35,5 +35,22 @@ namespace net_ef_videogame
             db.Videogames.Update(vd);
             db.SaveChanges();
         }
+        public void StampaVideogame(Videogame vd, SoftwareHouse softwarehouse)
+        {
+            Console.WriteLine($"Nome videogioco : {vd.Name}");
+            Console.WriteLine($"Riassunto videogioco : {vd.Overview}");
+            Console.WriteLine($"Data di rilascio videogioco : {vd.Release_date}");
+            Console.WriteLine($"Software House videogioco :{softwarehouse.Name}");
+        }
+        public void StampaListaVideogames(List<Videogame> lista)
+        {
+            foreach(Videogame v in lista)
+            {
+                Console.WriteLine($"Nome videogioco : {v.Name}");
+                Console.WriteLine($"Riassunto videogioco : {v.Overview}");
+                Console.WriteLine($"Data di rilascio videogioco : {v.Release_date}");
+
+            }
+        }
     }
 }
