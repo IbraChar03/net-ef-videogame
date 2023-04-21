@@ -16,6 +16,7 @@ namespace net_ef_videogame
                 Console.WriteLine("Aggiorna videogioco");
                 Console.WriteLine("Cerca videogioco tramite id ");
                 Console.WriteLine("Cerca videogiochi");
+                Console.WriteLine("Cerca videogiochi di una software house");
                 Console.WriteLine("Esci");
                 Console.Write("Scrivi la tua scelta : ");
                 string scelta = Console.ReadLine();
@@ -115,6 +116,22 @@ namespace net_ef_videogame
                             string parola = Console.ReadLine();
                             List<Videogame> listavideogames = db.Videogames.Where(v => v.Name.Contains(parola)).ToList();
                             vd.StampaListaVideogames(listavideogames);
+
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+
+                        break;
+               
+                    case "Cerca videogiochi di una software house":
+                        try
+                        {
+                            Console.Write("Inserisci il nome della software house : ");
+                            string nomesoftwarehouse = Console.ReadLine();
+                            SoftwareHouse softwarehouse = db.SoftwareHouses.Where(software => software.Name == nomesoftwarehouse).Include(software => software.Videogames).First();
+                            vd.StampaListaVideogames(softwarehouse.Videogames);
 
                         }
                         catch (Exception e)
