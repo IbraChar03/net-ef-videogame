@@ -74,21 +74,23 @@ namespace net_ef_videogame
                         }
 
                         break;
-                        //case "Aggiorna videogioco":
-                        //    try
-                        //    {
-                        //        Console.Write("Inserisci il nome del videogioco da aggiornare : ");
-                        //        string nomeVideogiocoAgg = Console.ReadLine();
-                        //        Console.Write("Inserisci il nuovo riassunto del videogioco : ");
-                        //        string riassuntoVideogiocoAgg = Console.ReadLine();
-                        //        VideogameManager.AggiornaVideogame(nomeVideogiocoAgg, riassuntoVideogiocoAgg);
-                        //    }
-                        //    catch (Exception e)
-                        //    {
-                        //        Console.WriteLine(e.Message);
-                        //    }
+                    case "Aggiorna videogioco":
+                        try
+                        {
+                            Console.Write("Inserisci il nome del videogioco da aggiornare : ");
+                            string nomeVideogiocoAgg = Console.ReadLine();
+                            Videogame videogame = db.Videogames.Where(v => v.Name == nomeVideogiocoAgg).First();
+                            Console.Write("Inserisci un nuovo riassunto per il videogioco : ");
+                            string overviewVd = Console.ReadLine();
+                            videogame.Overview = overviewVd;
+                            vd.AggiornaVideogioco(db, videogame);
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
 
-                        //    break;
+                        break;
                         //case "Cerca videogioco tramite id":
                         //    try
                         //    {

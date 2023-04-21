@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -27,6 +28,11 @@ namespace net_ef_videogame
         public void RimuoviVideogame(VideogameContext db,Videogame vd)
         {
             db.Videogames.Remove(vd);
+            db.SaveChanges();
+        }
+        public void AggiornaVideogioco(VideogameContext db, Videogame vd)
+        {
+            db.Videogames.Update(vd);
             db.SaveChanges();
         }
     }
